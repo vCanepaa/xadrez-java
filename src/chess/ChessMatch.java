@@ -1,12 +1,16 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Position;
+import chess.pieces.Rei;
+import chess.pieces.Torre;
 
 public class ChessMatch {
 	private Board tabu;
 
 	public ChessMatch() {
 		tabu = new Board(8,8);
+		initialSetup();
 		
 	}
 	public ChessPiece[][] getPecas() {
@@ -17,6 +21,11 @@ public class ChessMatch {
 			}
 		}
 		return mat;
+	}
+	
+	private void initialSetup() {
+		tabu.colocaPeca(new Torre(tabu,Color.BRANCA), new Position(2,1));
+		tabu.colocaPeca(new Rei(tabu, Color.BRANCA), new Position(3,1));
 	}
 	
 }
