@@ -44,6 +44,20 @@ public class Board {
 		pecas[pos.getLinha()][pos.getColuna()] = p;
 		p.position = pos;
 	}
+	public Piece removePeca(Position p) {
+		if(!existePos(p)) {
+			throw new BoardException("Não existe essa posicao no tabuleiro");
+		}
+		
+		if(!existePeca(p)) {
+			return null;
+		}
+		Piece aux = peca(p);
+		aux.position = null;
+		pecas[p.getLinha()][p.getColuna()] = null;
+		return aux;
+		
+	}
 	
 	
 	private boolean existePos(int l, int c) {
@@ -64,6 +78,8 @@ public class Board {
 		}
 		return peca(p) != null;
 	}
+	
+	
 	
 	
 	
