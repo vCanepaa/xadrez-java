@@ -55,12 +55,14 @@ public class ChessMatch {
 	private void validaPosicaoOrigem(Position p) {
 		if(!tabu.existePeca(p)) {
 			throw new ChessException("Não existe peca na posicao inicial");
-		};
+		}
+		if(!tabu.peca(p).temMovimentoPossivel()) {
+			throw new ChessException("Não existe movimento possivel");
+		}
 	}
 	private Piece movimenta(Position o, Position a) {
 		Piece p = tabu.removePeca(o);
 		Piece pecaCapturada = tabu.removePeca(a);
-		
 		tabu.colocaPeca(p, a);
 		return pecaCapturada;
 	}

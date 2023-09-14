@@ -12,7 +12,13 @@ public class Rei extends ChessPiece {
 
 	
 	@Override
+	
 	public String toString() {
 		return "K";
+	}
+	
+	public boolean[][] movimentosPossiveis(){
+		boolean[][] mat = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
+		return mat;
 	}
 }

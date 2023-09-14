@@ -1,9 +1,12 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import chess.ChessPosition;
+
+import chess.ChessException;
 import chess.ChessMatch;
 import chess.ChessPiece;
+import chess.ChessPosition;
 
 public class Program {
 
@@ -13,6 +16,8 @@ public class Program {
 		
 		
 		while(true) {
+			try {
+		UI.limpaTela();	
 		UI.printBoard(partida.getPecas());
 		System.out.println();
 		System.out.print("Origem: ");
@@ -22,8 +27,14 @@ public class Program {
 		ChessPosition destino = UI.lerChessPosition(sc);
 		
 		ChessPiece pecaCapturada = partida.performaMovimento(origem, destino);
-		
-		
+		}catch(ChessException e) {
+			System.out.println(e.getMessage());
+			sc.nextLine();
+		}catch(InputMismatchException e) {
+			System.out.println(e.getMessage());
+			sc.nextLine();
+		}
+		sc.close();
 		}
 	}
 
